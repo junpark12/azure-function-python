@@ -5,6 +5,7 @@ env:
   AZURE_FUNCTIONAPP_RESOURCE_GROUP_NAME: "Appservice"
   PYTHON_VERSION: "3.11"
   AZURE_REGISTRY_LOGIN_SERVER: "acrjpeus2.azurecr.io"
+  AZURE_REGISTRY_NAME: "acrjpeus2"
   IMAGE_NAME: "azure-python-function-app"
 
 on:
@@ -49,8 +50,8 @@ jobs:
 
       - name: ACR push
         run: |
-            az acr login --name acrjpeus2
-            az acr build . -r acrjpeus2 --image ${{ env.IMAGE_NAME }}:${{ github.sha }}
+            az acr login --name ${{env.AZURE_REGISTRY_NAME}}
+            az acr build . -r ${{env.AZURE_REGISTRY_NAME}} --image ${{ env.IMAGE_NAME }}:${{ github.sha }}
       
       # Publish docker image to Azure Function App.
       - name: "Update Azure Function App Container with Image"
