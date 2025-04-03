@@ -49,8 +49,8 @@ jobs:
 
       - name: ACR push
         run: |
-            az acr login --name ACRjpEus2
-            az acr build . -r ACRjpEus2 --image ${{ env.IMAGE_NAME }}:${{ github.sha }}
+            az acr login --name acrjpeus2
+            az acr build . -r acrjpeus2 --image ${{ env.IMAGE_NAME }}:${{ github.sha }}
       
       # Publish docker image to Azure Function App.
       - name: "Update Azure Function App Container with Image"
